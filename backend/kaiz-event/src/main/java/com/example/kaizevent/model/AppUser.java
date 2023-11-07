@@ -1,8 +1,9 @@
 package com.example.kaizevent.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class AppUser {
@@ -20,11 +21,14 @@ public class AppUser {
     private String username;
     @Column(name = "password")
     private String password;
+    @JsonBackReference
+    @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
+    private Set<UserRole> userRoleSet;
 
     public AppUser() {
     }
 
-    public AppUser(Long id, String name, String email, Boolean flagDeleted, Boolean flagOnline, String username, String password) {
+    public AppUser(Long id, String name, String email, Boolean flagDeleted, Boolean flagOnline, String username, String password, Set<UserRole> userRoleSet) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -32,6 +36,7 @@ public class AppUser {
         this.flagOnline = flagOnline;
         this.username = username;
         this.password = password;
+        this.userRoleSet = userRoleSet;
     }
 
     public Long getId() {
@@ -88,5 +93,13 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserRole> getUserRoleSet() {
+        return userRoleSet;
+    }
+
+    public void setUserRoleSet(Set<UserRole> userRoleSet) {
+        this.userRoleSet = userRoleSet;
     }
 }
