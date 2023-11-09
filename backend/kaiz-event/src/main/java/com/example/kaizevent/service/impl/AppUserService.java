@@ -1,5 +1,6 @@
 package com.example.kaizevent.service.impl;
 
+import com.example.kaizevent.dto.JwtResponseUserDetails;
 import com.example.kaizevent.model.AppUser;
 import com.example.kaizevent.model.UserRole;
 import com.example.kaizevent.repository.IAppUserRepository;
@@ -30,7 +31,7 @@ public class AppUserService  implements IAppUserService {
             grantList.add(new SimpleGrantedAuthority(userRole.getAppRole().getName()));
         }
         UserDetails userDetails = new JwtResponseUserDetails(
-                appUser.getUserName(),
+                appUser.getUsername(),
                 appUser.getPassword(),
                 appUser.getFlagOnline(),
                 grantList);

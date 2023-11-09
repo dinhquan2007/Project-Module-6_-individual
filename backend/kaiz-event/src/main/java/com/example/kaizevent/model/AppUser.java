@@ -102,4 +102,5 @@ public class AppUser {
     public void setUserRoleSet(Set<UserRole> userRoleSet) {
         this.userRoleSet = userRoleSet;
     }
+
 }
