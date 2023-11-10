@@ -1,9 +1,17 @@
+import '../../public/main.css'
+import '../../public/util.css'
+import {useState} from "react";
+
+
 function Login(){
+    const [user,setUser]=useState({
+
+    })
     return(
         <div className="limiter">
             <div className="container-login100">
                 <div className="wrap-login100">
-                    <div className="login100-pic js-tilt" data-tilt>
+                    <div className="login100-pic js-tilt">
                         <img  alt="IMG"/>
                     </div>
 
