@@ -1,13 +1,11 @@
 package com.example.kaizevent.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class UserRole {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     @ManyToOne
     @JoinColumn(name = "role_id",referencedColumnName = "id")

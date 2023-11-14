@@ -1,0 +1,173 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.month {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    font-size: 12px;
+    background-color: #eb1212;
+}
+
+.date {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 42px;
+    font-weight: 400;
+    color: #666;
+}
+
+.day {
+    margin: 0;
+    color: #666;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.event-name .calendar-image {
+    width: 85px;
+    z-index: 7;
+    position: relative;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+
+@media screen and (min-width: 768px) {
+
+
+    .event-name .event-name-content {
+        margin-left: 100px;
+    }
+
+    .padding-left-0 {
+        padding-left: 0;
+    }
+
+    .padding-right-0 {
+        padding-right: 0;
+    }
+}
+
+.banner .event-name h1 {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+span {
+    color: rgb(5, 5, 5);
+    font-family: open sans, sans-serif;
+    font-size: 16px
+}
+
+a, button, h1, h2, h3, h4, h5, h6, li, option, p, span, td, th {
+    font-family: "Open Sans", sans-serif;
+}
+
+.event-name-content h1.title {
+    line-height: 1.3em;
+    padding-right: 5px
+}
+
+.cnt-left {
+    text-align: left;
+}
+
+.padding-left-0 {
+    padding-left: 0;
+}
+
+.padding-right-0 {
+    padding-right: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .banner {
+        padding-bottom: 50px
+    }
+
+    .banner .button-gr {
+        margin-top: 0
+    }
+
+    .banner .button-gr a {
+        min-width: auto
+    }
+
+    .banner .button-gr .btn-booking {
+        border-radius: 2px
+    }
+
+    .event-name .event-price, .event-name .event-time, .event-name .event-venue {
+        border: none;
+        padding-top: 5px;
+        padding-bottom: 5px
+    }
+
+    .event-name .more-show {
+        float: none;
+        display: block
+    }
+
+    .event-name .title {
+        text-align: left
+    }
+
+    .event-name .calendar-image {
+        float: left
+    }
+
+    .event-name .event-name-content {
+        margin-left: 100px
+    }
+
+    .modal-dialog {
+        width: 360px;
+        position: absolute;
+        width: 360px;
+        height: 404px;
+        top: 50%;
+        left: 50%;
+        margin-top: -202px;
+        margin-left: -180px
+    }
+
+    .modal.show-time .modal-dialog {
+        width: 360px;
+        position: absolute;
+        width: 360px;
+        height: 404px;
+        top: 50%;
+        left: 50%;
+        margin-top: -202px;
+        margin-left: -180px
+    }
+
+    .modal.add-calendar .modal-dialog {
+        position: relative
+    }
+
+    .banner .event-name .event-name-content .more-show, .banner .event-name .event-name-content .note {
+        margin-left: 2em
+    }
+}
+
+.banner {
+    padding-bottom: 50px;
+}
+
+.bg-white, .tkb-navbar .dropdown-menu {
+    background-color: #fff;
+    outline: 0;
+}
+.txt-16{
+    font-size: 16px;
+    font-weight: bold;
+}

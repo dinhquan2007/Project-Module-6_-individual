@@ -7,46 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+public interface IAppUserRepository extends JpaRepository<AppUser, Long> {
+    @Query(value = "select * from app_user a where a.username = :username ", nativeQuery = true)
+    AppUser getAccountByUserName(@Param("username") String userName);
 
-public interface IAppUserRepository extends JpaRepository<AppUser,Long> {
-
-    @Transactional()
-    @Query(value = "select * from app_user where user_name = :name and flag_deleted = 0 ", nativeQuery = true)
-    AppUser findAppUserByName(String username);
-    @Modifying
-    @Transactional
-    @Query(value = "update app_user set flag_online = 1 where id = :#{#appUser.id} ",nativeQuery = true)
-    Integer updateAppUserIsOnline(AppUser appUser);
-    @Transactional()
-    @Query(value = "select * from app_user where id = :id and flag_deleted = 0 ", nativeQuery = true)
-    AppUser findAppUserById(@Param("id") Long id);
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT INTO app_user (user_name, password,flag_online, flag_deleted)\n" +
-            "VALUES (:#{#appUser.userName},:#{#appUser.password}, 0, 0)", nativeQuery = true)
-    Integer addNewAppUser(AppUser appUser);
-    @Modifying
-    @Transactional
-    @Query(value = "update app_user set flag_online = 0 where user_name = :userName ",nativeQuery = true)
-    Integer updateAppUserIsOffline(@Param("userName") String userName);
-    @Query(value = " select au.id from app_user au where au.user_name = :userName ",nativeQuery = true)
-    Long findIdByUserName(@Param("userName") String userName);
-    @Query(value =  " select r.id from app_role r where r.name = :name " ,nativeQuery = true)
-    Long findAppRoleIdByName(@Param("name")String name);
-    @Modifying
-    @Transactional
-    @Query(value = " insert into user_role (app_role_id, app_user_id) values (:appRoleId, :appUserId)",nativeQuery = true)
-    void insertRoleForCustomer(@Param("appRoleId") Long appRoleId,@Param("appUserId") Long appUserId);
-    @Override
-    boolean existsById(Long aLong);
-    Optional<AppUser> findAppUserByUserName(String name);
-    @Modifying
-    @Transactional
-    @Query(value = "update app_user " +
-            "set " +
-            "password = :#{#appUser.password} " +
-            "where id = :#{#appUser.id} ",nativeQuery = true)
-    void updatePass(AppUser appUser);
-
+//    void createAccount(String username, String encode, long l);
 }
