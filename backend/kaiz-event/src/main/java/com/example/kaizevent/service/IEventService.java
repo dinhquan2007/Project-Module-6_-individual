@@ -10,4 +10,6 @@ import java.time.LocalDateTime;
 
 public interface IEventService {
     Page<IEventDto> getAll(Pageable pageable, String name, String location, String artist);
+
+    Event findById(Long id);
 }

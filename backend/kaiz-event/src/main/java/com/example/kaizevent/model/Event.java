@@ -25,9 +25,10 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String name, LocalDateTime dateStart, LocalDateTime dateEnd, String description, Location location) {
+    public Event(Long id, String name, String image, LocalDateTime dateStart, LocalDateTime dateEnd, String description, Location location) {
         this.id = id;
         this.name = name;
+        this.image = image;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.description = description;
@@ -80,5 +81,13 @@ public class Event {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

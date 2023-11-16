@@ -14,11 +14,11 @@ public interface IEventRepository extends JpaRepository<Event,Long> {
 @Query(value = "SELECT \n" +
         "    e.id AS id,\n" +
         "    e.name AS name,\n" +
-        "    e.date_start AS date_start,\n" +
+        "    e.date_start AS start,\n" +
         "    l.name AS location,\n" +
         "    l.address AS address,\n" +
         "    e.image AS image,\n" +
-        "    GROUP_CONCAT(DISTINCT e.name) AS artist\n" +
+        "    GROUP_CONCAT(DISTINCT a.name) AS artist\n" +
         " FROM \n" +
         "    event e\n" +
         "        JOIN\n" +
@@ -28,8 +28,10 @@ public interface IEventRepository extends JpaRepository<Event,Long> {
         "        JOIN\n" +
         "    artist a ON aed.artist_id = a.id\n" +
         "WHERE\n" +
-        "    e.name LIKE :name AND a.name LIKE :artist\n" +
+        "    e.name LIKE :name AND a.name LIKE :artist \n" +
         "        AND l.name LIKE :location\n" +
-        "GROUP BY e.id",nativeQuery = true)
+        "GROUP BY e.id ",nativeQuery = true)
     Page<IEventDto> getAll(Pageable pageable, @Param("name") String name,@Param("location") String location,@Param("artist") String artist);
+@Query(value = "select * from event where event.id=:id",nativeQuery = true)
+    Event findEventById(@Param("id") Long id);
 }

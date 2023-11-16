@@ -13,17 +13,15 @@ public class Location {
     private String name;
     private String address;
     private Long rentCost;
-    private int capacity;
 
     public Location() {
     }
 
-    public Location(Long id, String name, String address, Long rentCost, int capacity) {
+    public Location(Long id, String name, String address, Long rentCost) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.rentCost = rentCost;
-        this.capacity = capacity;
     }
 
     public Long getId() {
@@ -56,13 +54,5 @@ public class Location {
 
     public void setRentCost(Long rentCost) {
         this.rentCost = rentCost;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 }

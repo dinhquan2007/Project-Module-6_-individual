@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class ArtistEventDetail {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "artist_id",referencedColumnName = "id")

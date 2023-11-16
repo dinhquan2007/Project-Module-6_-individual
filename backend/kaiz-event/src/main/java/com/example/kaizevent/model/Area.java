@@ -9,6 +9,7 @@ public class Area {
     private Long id;
     private String name;
     private Long price;
+    private  int capacity;
     @ManyToOne
     @JoinColumn(name = "location_id",referencedColumnName = "id")
     private Location location;
@@ -16,10 +17,11 @@ public class Area {
     public Area() {
     }
 
-    public Area(Long id, String name, Long price, Location location) {
+    public Area(Long id, String name, Long price, int capacity, Location location) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.capacity = capacity;
         this.location = location;
     }
 
@@ -53,5 +55,13 @@ public class Area {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }

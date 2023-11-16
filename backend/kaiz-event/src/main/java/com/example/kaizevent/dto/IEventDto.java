@@ -5,8 +5,9 @@ import java.time.LocalDateTime;
 public interface IEventDto {
     Long getId();
     String getName();
-    LocalDateTime getDateStart();
-    LocalDateTime getDateEnd();
+    String getArtist();
+    LocalDateTime getStart();
+    LocalDateTime getEnd();
     String getDescription();
     String getLocation();
     String getAddress();
