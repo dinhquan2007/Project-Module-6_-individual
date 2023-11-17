@@ -2,12 +2,12 @@ import './detail.css'
 import {useNavigate, useParams} from "react-router-dom";
 import moment from "moment";
 import {useEffect, useState} from "react";
-import {getEventDetail} from "../service/event";
+import {getEventDetail} from "../../service/event";
 import {toast} from "react-toastify";
-import {parseDate, parseDay, vnd} from "../service/parseDate";
-import {getAllTypeTicketInEvent} from "../service/ticket";
-import Footer from "./Footer";
-import Headers from "./Header";
+import {parseDate, parseDay, vnd} from "../../service/parseDate";
+import {getAllTypeTicketInEvent} from "../../service/ticket";
+import Footer from "../Footer";
+import Headers from "../Header";
 
 function Detail() {
     const param = useParams()

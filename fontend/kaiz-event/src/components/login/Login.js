@@ -1,9 +1,9 @@
-import './util.css'
-import './main.css'
+import '../util.css'
+import '../main.css'
 import {Field, Formik, Form} from "formik";
 import {useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {login} from "../service/jwt";
+import {login} from "../../service/jwt";
 import {toast} from "react-toastify";
 
 
