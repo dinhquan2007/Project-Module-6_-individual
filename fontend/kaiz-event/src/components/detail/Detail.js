@@ -11,7 +11,7 @@ import Headers from "../Header";
 
 function Detail() {
     const param = useParams()
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [event, setEvent] = useState({});
     const [listTicket, setListTicket] = useState([]);
     const [locations, setLocations] = useState({
@@ -110,7 +110,7 @@ function Detail() {
                             <div className="col-md-4" style={{position: "initial"}}>
                                 <div className="mt-2 bg-white p-3">
                                     <h3 className="card-title">
-                                        Thông Tin vé
+                                        Thông tin vé
                                     </h3>
                                     <hr/>
                                     {listTicket && listTicket.map(t => (
@@ -127,9 +127,11 @@ function Detail() {
                                             </>
                                         )
                                     )}
-                                    <button className="btn btn-block btn-danger w-100" onClick={()=>{navigate(`/order/${param.id}`)}}>Mua vé ngay</button>
+                                    <button className="btn btn-block btn-danger w-100" onClick={() => {
+                                        navigate(`/order/${param.id}`)
+                                    }}>Mua vé ngay
+                                    </button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
