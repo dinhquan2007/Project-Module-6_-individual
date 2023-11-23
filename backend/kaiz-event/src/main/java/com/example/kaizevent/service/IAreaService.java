@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IAreaService {
     List<Area> getAllByIdEvent(Long id);
+
+    Area getById(Long id);
 }

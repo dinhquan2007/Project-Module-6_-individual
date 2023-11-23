@@ -23,6 +23,11 @@ public class Ticket {
         this.registration = registration;
     }
 
+    public Ticket(Area area, Registration registration) {
+        this.area = area;
+        this.registration = registration;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,16 +1,20 @@
 import Footer from "./Footer";
 import Headers from "./Header";
 import {useNavigate, useParams} from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css'
 import {useEffect, useState} from "react";
 import {getAllTypeTicketInEvent} from "../service/ticket";
 import {getEventDetail} from "../service/event";
 import {parseDate, parseDay, vnd} from "../service/parseDate";
+import Paypal from "./Payment";
+import {ToastContainer} from "react-toastify";
 
 function Order() {
+    const [checkout,setCheckout]=useState(false)
     const param = useParams()
     const [event, setEvent] = useState({});
     const [listTicket, setListTicket] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [ cart, setCart] = useState([]);
     const [sum,setSum]=useState(0);
     const [locations, setLocations] = useState({
         id: null,
@@ -33,7 +37,7 @@ function Order() {
             arr.push(newTicket)
         }
         setCart(arr);
-        console.log(arr)
+        // console.log(arr)
         setSum(sum+ticket.price)
 
     }
@@ -77,7 +81,7 @@ function Order() {
     useEffect(() => {
         getEvent(param.id)
         getListTicket(param.id)
-    }, [param,cart.length]);
+    }, [param,cart.length,checkout]);
 
     return (
         <div>
@@ -119,7 +123,7 @@ function Order() {
                                 </thead>
                                 <tbody>
                                 {listTicket && listTicket.map(t => (
-                                    <tr>
+                                    <tr key={t.id}>
                                         <td className="text-center">{t.name}</td>
                                         <td className="text-center">{vnd.format(t.price)}</td>
                                         <td className="d-flex justify-content-center">
@@ -187,9 +191,13 @@ function Order() {
                                         </div>
                                     </div>
                                     <div>
-                                        <button className="btn btn-block btn-outline-success w-100 mt-3 p-2 ">
-                                            Tiến hành thanh toán
-                                        </button>
+                                        {checkout?(<Paypal total ={sum} data={cart} />):(
+                                            cart.length>0&&(
+                                                    <button type="button" onClick={()=>setCheckout(true)} className="btn btn-block btn-outline-success w-100 mt-3 p-2 ">
+                                                        Tiến hành thanh toán
+                                                    </button>
+                                                )
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -197,6 +205,7 @@ function Order() {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
             <Footer/>
         </div>
     )

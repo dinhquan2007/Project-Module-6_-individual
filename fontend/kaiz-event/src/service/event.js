@@ -9,3 +9,7 @@ export  const getEventDetail = async (id)=>{
     const res=(await axios.get(`http://localhost:8080/api/event/detail/${id}`))
     return res;
 }
+export const addRegistration=async (cart,user)=>{
+    const res=await  axios.post(`http://localhost:8080/api/regis/create?username=${user}`,cart)
+    return res;
+}

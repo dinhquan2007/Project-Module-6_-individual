@@ -16,4 +16,9 @@ public class AreaService implements IAreaService {
     public List<Area> getAllByIdEvent(Long id) {
         return areaRepository.getAllByIdEvent(id);
     }
+
+    @Override
+    public Area getById(Long id) {
+        return areaRepository.findById(id).orElse(null);
+    }
 }

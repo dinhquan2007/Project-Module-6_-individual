@@ -1,6 +1,7 @@
 package com.example.kaizevent.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Registration {
@@ -8,6 +9,8 @@ public class Registration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(columnDefinition = "datetime")
+    private LocalDateTime time;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private AppUser appUser;
@@ -15,9 +18,10 @@ public class Registration {
     public Registration() {
     }
 
-    public Registration(Long id, String name, AppUser appUser) {
+    public Registration(Long id, String name, LocalDateTime time, AppUser appUser) {
         this.id = id;
         this.name = name;
+        this.time = time;
         this.appUser = appUser;
     }
 
@@ -43,5 +47,13 @@ public class Registration {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }
