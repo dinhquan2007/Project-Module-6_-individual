@@ -10,3 +10,4 @@ function Infomation() {
         </>
     )
 }
+export default Infomation;

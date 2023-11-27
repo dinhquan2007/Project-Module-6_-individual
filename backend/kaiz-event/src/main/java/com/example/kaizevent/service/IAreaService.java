@@ -8,4 +8,6 @@ public interface IAreaService {
     List<Area> getAllByIdEvent(Long id);
 
     Area getById(Long id);
+
+    void save(Area area);
 }

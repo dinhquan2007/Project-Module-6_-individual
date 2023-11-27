@@ -33,7 +33,7 @@ function History() {
             <div className="w-100" style={{background: "whitesmoke", minHeight: "500px"}}>
                 <div className="container">
                     <div className="row">
-                        <div className="col-sm-4 col-xs-12 mt-5">
+                        <div className="col-sm-4 col-xs-12 my-5">
                             <div className="w-100">
                                 <div className="w-100 pos-relative" style={{border: "2px solid lightgrey"}}>
                                     <div className="details bg-white p-2 w-100">
@@ -48,6 +48,7 @@ function History() {
                                                         <div className="show-name">{o.event}</div>
                                                     </button>
                                                 </div>
+                                                <hr/>
                                                 <div className="row my-0 p-1">
                                                     <div className="col ml-0 ">Số lượng</div>
                                                     <div className="col-auto mr-0 ">{o.quantity} vé</div>
@@ -55,7 +56,6 @@ function History() {
                                                 <div className="row my-0 p-1">
                                                     <div className="col ml-0 ">Ngày mua</div>
                                                     <div className="col-auto mr-0 ">{parseDate(new Date(o.time))}</div>
-
                                                 </div>
                                                 <div className="row my-0 p-1">
                                                     <div className="col ml-0 ">Tổng tiền</div>

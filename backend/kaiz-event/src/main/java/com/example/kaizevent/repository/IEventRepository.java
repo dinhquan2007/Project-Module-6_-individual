@@ -30,7 +30,8 @@ public interface IEventRepository extends JpaRepository<Event,Long> {
         "WHERE\n" +
         "    e.name LIKE :name AND a.name LIKE :artist \n" +
         "        AND l.name LIKE :location\n" +
-        "GROUP BY e.id ",nativeQuery = true)
+        "GROUP BY e.id " +
+        "ORDER BY e.date_start DESC",nativeQuery = true)
     Page<IEventDto> getAll(Pageable pageable, @Param("name") String name,@Param("location") String location,@Param("artist") String artist);
 @Query(value = "select * from event where event.id=:id",nativeQuery = true)
     Event findEventById(@Param("id") Long id);

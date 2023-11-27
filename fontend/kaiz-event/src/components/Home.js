@@ -12,9 +12,11 @@ function Home() {
     const [location, setLocation] = useState("");
     const [artist, setArtist] = useState("");
     const [page, setPage] = useState(0);
+    const [totalPage,setTotalPage]=useState(0)
     const list = async () => {
         const res = await getList(name, location, artist, page)
         setListEvent(res.content)
+        setTotalPage(res.totalPages)
     }
     const handleSearch = () => {
         list()
@@ -22,7 +24,7 @@ function Home() {
     useEffect(() => {
         document.title = "Kaiz-Event"
         list()
-    }, [])
+    }, [page])
     return (
         <div>
             <Headers/>
@@ -64,8 +66,8 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div style={{background: "whitesmoke", minHeight: "700px"}}>
-                <div className="container">
+            <div style={{background: "whitesmoke", minHeight: "860px"}}>
+                <div className="container" style={{background: "whitesmoke", minHeight: "800px"}}>
                     <div className="row">
                         {listEvent && listEvent.map(e => (
                             <div key={e.id} className="col-xl-3 col-lg-4 col-md-6 col-sm-12 p-2 my-2">
@@ -73,6 +75,7 @@ function Home() {
                                     <div className="h-50">
                                         <img
                                             src={e.image}
+                                            style={{objectFit:"cover",width:"100%"}}
                                             className="card-img-top" alt="Card Image"/>
                                     </div>
                                     <div className="card-body">
@@ -82,8 +85,10 @@ function Home() {
 
                                         <div className="row justify-content-around d-flex mt-2">
                                             <div className="col">
-                                                <p className="card-text"><strong>Thời Gian
-                                                    : </strong> {parseDate(e.start)}</p>
+                                                <p className="card-text">
+                                                    <strong>Thời Gian
+                                                        : </strong> <b>{(new Date(e.start).getTime())>(new Date().getTime())?(parseDate(e.start)):<b className="show-name">Đã diễn ra</b> }</b></p>
+
                                             </div>
                                         </div>
                                         <div className="row justify-content-around d-flex mt-2">
@@ -95,7 +100,22 @@ function Home() {
                         ))}
                     </div>
                 </div>
+                <div className="d-flex justify-content-center">
+                    {totalPage>1&&(
+                        <nav aria-label="Page navigation example">
+                            <ul className="pagination">
+                                <li className="page-item"><button className={page<1?"disabled page-link":"page-link"} onClick={()=>setPage(0)}>Đầu</button></li>
+                                <li className="page-item"><button className={page<1?"disabled page-link":"page-link"} onClick={()=>setPage(page-1)}>Trước</button></li>
+                                <li className="page-item"><button className="page-link active">{page+1}/{totalPage}</button></li>
+                                <li className="page-item"><button className={page>=totalPage-1?"disabled page-link":"page-link"} onClick={()=>setPage(page+1)}>Sau</button></li>
+                                <li className="page-item"><button className={page>=totalPage-1?"disabled page-link":"page-link"} onClick={()=>setPage(totalPage-1)}>Cuối</button></li>
+                            </ul>
+                        </nav>
+                    )}
+                </div>
             </div>
+
+
             <Footer/>
         </div>
     )

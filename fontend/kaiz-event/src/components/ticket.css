@@ -27,8 +27,11 @@
 .admit-one {
     position: absolute;
     color: darkgray;
-    height: 250px;
-    padding: 0 10px;
+    margin-left: 5px;
+    margin-top: 10px;
+    height: 280px;
+    border: dotted 1px red;
+    padding: 5px;
     letter-spacing: 0.15em;
     display: flex;
     text-align: center;
@@ -60,7 +63,7 @@
     align-items: center;
 }
 
-.date {
+.dates {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     padding: 5px 0;
@@ -70,19 +73,19 @@
     justify-content: space-around;
 }
 
-.date span {
+.dates span {
     width: 100px;
 }
 
-.date span:first-child {
+.dates span:first-child {
     text-align: left;
 }
 
-.date span:last-child {
+.dates span:last-child {
     text-align: right;
 }
 
-.date .june-29 {
+.dates .june-29 {
     color: #d83565;
     font-size: 20px;
 }

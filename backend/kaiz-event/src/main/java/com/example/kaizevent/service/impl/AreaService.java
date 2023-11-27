@@ -21,4 +21,9 @@ public class AreaService implements IAreaService {
     public Area getById(Long id) {
         return areaRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void save(Area area) {
+        areaRepository.save(area);
+    }
 }

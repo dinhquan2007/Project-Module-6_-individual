@@ -10,12 +10,12 @@ import Paypal from "./Payment";
 import {ToastContainer} from "react-toastify";
 
 function Order() {
-    const [checkout,setCheckout]=useState(false)
+    const [checkout, setCheckout] = useState(false)
     const param = useParams()
     const [event, setEvent] = useState({});
     const [listTicket, setListTicket] = useState([]);
-    const [ cart, setCart] = useState([]);
-    const [sum,setSum]=useState(0);
+    const [cart, setCart] = useState([]);
+    const [sum, setSum] = useState(0);
     const [locations, setLocations] = useState({
         id: null,
         name: "",
@@ -38,15 +38,15 @@ function Order() {
         }
         setCart(arr);
         // console.log(arr)
-        setSum(sum+ticket.price)
+        setSum(sum + ticket.price)
 
     }
     const checkQuantity = (ticket) => {
         const arr = [...cart];
         const index = arr.findIndex((t) => t.id === ticket.id);
-        if (index !== -1){
+        if (index !== -1) {
             return arr[index].quantity
-        }else{
+        } else {
             return 0
         }
     }
@@ -54,7 +54,7 @@ function Order() {
         const arr = [...cart];
         const index = arr.findIndex((t) => t.id === ticketId);
         if (index !== -1) {
-            setSum(sum- arr[index].price)
+            setSum(sum - arr[index].price)
             // Tìm thấy mặt hàng trong giỏ hàng
             if (arr[index].quantity > 1) {
                 // Nếu số lượng lớn hơn 1, giảm số lượng đi 1
@@ -81,9 +81,10 @@ function Order() {
     useEffect(() => {
         getEvent(param.id)
         getListTicket(param.id)
-    }, [param,cart.length,checkout]);
+    }, [param, cart.length, checkout]);
 
     return (
+
         <div>
             <Headers/>
             <header className="text-center bg-danger"
@@ -109,10 +110,12 @@ function Order() {
                     </div>
                 </div>
             </header>
+
             <div className="w-100" style={{background: "whitesmoke", minHeight: "500px"}}>
                 <div className="container">
                     <div className="row">
-                        <div className="col-sm-8 col-xs-12 my-5 pt-3 bg-white" style={{border: "1px solid lightgrey"}}>
+                        <div className="col-sm-8 col-xs-12 my-5 pt-3 bg-white"
+                             style={{border: "1px solid lightgrey"}}>
                             <table className="table table-striped w-100">
                                 <thead className="p-2">
                                 <tr className="p-2">
@@ -130,16 +133,18 @@ function Order() {
                                             <div className="btn-group d-flex justify-content-center">
                                                 <div className="input-group w-50 text-center">
                                                     <button className="btn btn-outline-secondary" type="button"
-                                                    onClick={()=>{
-                                                        decreaseTicket(t.id)
-                                                    }}>
+                                                            onClick={() => {
+                                                                decreaseTicket(t.id)
+                                                            }}>
                                                         -
                                                     </button>
                                                     <input type="text" min="0"
-                                                           className="form-control text-center w-50" value={checkQuantity(t)}/>
-                                                    <button className="btn btn-outline-secondary" onClick={() => {
-                                                        increaseTicket(t);
-                                                    }} type="button">
+                                                           className="form-control text-center w-50"
+                                                           value={checkQuantity(t)}/>
+                                                    <button className="btn btn-outline-secondary"
+                                                            onClick={() => {
+                                                                increaseTicket(t);
+                                                            }} type="button">
                                                         +
                                                     </button>
                                                 </div>
@@ -163,7 +168,7 @@ function Order() {
                                             <b className="col-auto mr-0 ">Số lượng</b>
                                         </div>
                                         <hr/>
-                                        {cart.length >0 ? cart.map((t) => (
+                                        {cart.length > 0 ? cart.map((t) => (
                                             <>
                                                 <div className="row my-0 p-1">
                                                     <div className="col ml-0 ">{t.name}</div>
@@ -176,7 +181,7 @@ function Order() {
                                                 </div>
                                                 <hr/>
                                             </>
-                                        )):(<div className="row my-2 p-1">
+                                        )) : (<div className="row my-2 p-1">
                                             <p>Vui lòng chọn vé</p>
                                             <hr/>
                                         </div>)}
@@ -186,17 +191,19 @@ function Order() {
                                         }}>
                                             <div className="row">
                                                 <strong className="col ml-0 text-light">Tổng cộng</strong>
-                                                <strong className="col-auto mr-0 text-light">{vnd.format(sum)}</strong>
+                                                <strong
+                                                    className="col-auto mr-0 text-light">{vnd.format(sum)}</strong>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        {checkout?(<Paypal total ={sum} data={cart} />):(
-                                            cart.length>0&&(
-                                                    <button type="button" onClick={()=>setCheckout(true)} className="btn btn-block btn-outline-success w-100 mt-3 p-2 ">
-                                                        Tiến hành thanh toán
-                                                    </button>
-                                                )
+                                        {checkout ? (<Paypal total={sum} data={cart} orders={param.id}/>) : (
+                                            cart.length > 0 && (
+                                                <button type="button" onClick={() => setCheckout(true)}
+                                                        className="btn btn-block btn-outline-success w-100 my-3 p-2 ">
+                                                    Tiến hành thanh toán
+                                                </button>
+                                            )
                                         )}
                                     </div>
                                 </div>

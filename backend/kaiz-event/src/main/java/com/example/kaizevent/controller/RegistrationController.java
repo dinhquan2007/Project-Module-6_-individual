@@ -35,7 +35,7 @@ private IAppUserService appUserService;
     private IAreaService areaService;
     @PostMapping("/create")
     public ResponseEntity<?> addRegistration(@RequestBody CartOderDto cart, @RequestParam("username") String username){
-
+        int sum=0;
         AppUser appUser= appUserService.findByUsername(username);
         Registration registration=new Registration();
         registration.setTime(LocalDateTime.now());
@@ -43,6 +43,8 @@ private IAppUserService appUserService;
         Registration registration1= registrationService.save(registration);
         for (CartDto c : cart.getCartDtos()){
             Area area=areaService.getById(c.getId());
+            areaService.save(area);
+            area.setCapacity(area.getCapacity()-c.getQuantity());
             for (int i = 0; i < c.getQuantity(); i++) {
             ticketService.addTicket(new Ticket(area,registration1));
             }

@@ -10,8 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.Filter;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -26,7 +24,16 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers(
+                        "/authenticate",
+                                    "/api/event/**",
+                                    "/api/area/**"
+                )
+                .permitAll()
+                .antMatchers(
+                        "/api/regis/**",
+                        "/api/ticket/**"
+                )
                 .permitAll()
                 .anyRequest()
                 .authenticated()
